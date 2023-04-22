@@ -1,34 +1,46 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { getAddressDto } from './dto/get-address.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Post()
-  create(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.create(createUserDto);
-  }
-
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  async getAllUser() {
+    return `${this.getAllUser.name} not implemented`;
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(+id);
+  @Post('/my')
+  updateMyInfo(@Body() UpdateUserDto: UpdateUserDto) {
+    return `${this.updateMyInfo.name} not implemented`;
   }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+  @Get('/my')
+  async getMyInfo() {
+    return `${this.getMyInfo.name} not implemented`;
   }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(+id);
+  @Get('my/transactions')
+  async getMyTransactions() {
+    return `${this.getMyTransactions.name} not implemented`;
+  }
+  @Get('/my/swaps')
+  async getMySwaps() {
+    return `${this.getMySwaps.name} not implemented`;
+  }
+  @Get('/:address')
+  async getAddressInfo(@Param() dto: getAddressDto) {
+    const { address } = dto;
+    return `${address}, ${this.getAddressInfo.name} not implemented`;
+  }
+  @Get('/:address/swaps')
+  async getAddressSwaps(@Param() dto: getAddressDto) {
+    const { address } = dto;
+    return `${address}, ${this.getAddressSwaps.name} not implemented`;
+  }
+  @Get('/:address/transactions')
+  async getAddressTransactions(@Param() dto: getAddressDto) {
+    const { address } = dto;
+    return `${address}, ${this.getAddressTransactions.name} not implemented`;
   }
 }
