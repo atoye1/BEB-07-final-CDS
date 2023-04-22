@@ -24,8 +24,7 @@ export class UsersController {
 
   @Get()
   async getAllUser() {
-    const getAllUserQuery = new GetAllUserQuery('garbage');
-    return await this.queryBus.execute(getAllUserQuery);
+    return await this.queryBus.execute(new GetAllUserQuery());
   }
 
   @Post('/my')

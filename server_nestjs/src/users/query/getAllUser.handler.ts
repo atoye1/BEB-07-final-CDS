@@ -12,8 +12,7 @@ export class GetAllUserHandler implements IQueryHandler<GetAllUserQuery> {
     private userRepository: Repository<Users>,
   ) {}
 
-  async execute(query: GetAllUserQuery): Promise<any> {
-    console.log('execute called');
+  async execute(): Promise<any> {
     const users = await this.userRepository.find();
     if (!users) throw new NotFoundException('no such user');
     return users;
