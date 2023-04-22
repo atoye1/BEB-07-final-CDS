@@ -13,7 +13,8 @@ export class UsersController {
   }
 
   @Post('/my')
-  updateMyInfo(@Body() UpdateUserDto: UpdateUserDto) {
+  updateMyInfo(@Body() dto: UpdateUserDto) {
+    console.log(dto);
     return `${this.updateMyInfo.name} not implemented`;
   }
   @Get('/my')
