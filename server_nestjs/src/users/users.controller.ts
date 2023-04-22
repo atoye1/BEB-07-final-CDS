@@ -1,15 +1,31 @@
-import { Controller, Get, Post, Body, Param } from '@nestjs/common';
-import { UsersService } from './users.service';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Param,
+  Inject,
+  Logger,
+  LoggerService,
+} from '@nestjs/common';
+import { CommandBus, QueryBus } from '@nestjs/cqrs';
+
 import { UpdateUserDto } from './dto/update-user.dto';
 import { getAddressDto } from './dto/get-address.dto';
+import { GetAllUserQuery } from './query/getAllUser.query';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private commandBus: CommandBus,
+    private queryBus: QueryBus,
+    @Inject(Logger) private readonly logger: LoggerService,
+  ) {}
 
   @Get()
   async getAllUser() {
-    return `${this.getAllUser.name} not implemented`;
+    const getAllUserQuery = new GetAllUserQuery('garbage');
+    return await this.queryBus.execute(getAllUserQuery);
   }
 
   @Post('/my')

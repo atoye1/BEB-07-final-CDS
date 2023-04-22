@@ -114,7 +114,7 @@ web_modules/
 .env.local
 
 # orm config
-orm.config.ts
+ormconfig.ts
 
 # yarn v2
 .yarn/cache
