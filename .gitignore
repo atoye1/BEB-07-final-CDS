@@ -113,6 +113,8 @@ web_modules/
 .env.production.local
 .env.local
 
+# orm config
+orm.config.ts
 
 # yarn v2
 .yarn/cache
