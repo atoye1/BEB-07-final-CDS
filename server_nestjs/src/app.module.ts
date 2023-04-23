@@ -11,6 +11,8 @@ import { EmailModule } from './email/email.module';
 import { BlockchainListenerModule } from './blockchain-listener/blockchain-listener.module';
 import { TypeOrmConfig } from 'config/typeorm.config';
 import { validationSchema } from 'config/validationSchema';
+import { AuthModule } from './auth/auth.module';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
   imports: [
@@ -27,6 +29,8 @@ import { validationSchema } from 'config/validationSchema';
       validationSchema: validationSchema, // joi를 활용한 유효성 검사 객체를 추가한다.
     }),
     TypeOrmModule.forRootAsync(TypeOrmConfig),
+    AuthModule,
+    CacheModule.register(),
   ],
   controllers: [AppController],
   providers: [AppService],
