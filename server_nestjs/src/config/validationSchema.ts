@@ -13,4 +13,7 @@ export const validationSchema = Joi.object({
   DATABASE_PASSWORD: Joi.string().required(),
   DATABASE_DB: Joi.string().required(),
   DATABASE_SYNCHRONIZE: Joi.string().valid('true', 'false').required(),
+  REDIS_HOST: Joi.string().required(),
+  REDIS_PORT: Joi.string().required(),
+  REDIS_PASSWORD: Joi.string().required(),
 });
