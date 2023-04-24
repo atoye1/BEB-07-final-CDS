@@ -6,7 +6,7 @@ export const cacheConfig = {
   imports: [ConfigModule],
   useFactory: (configService: ConfigService) => {
     const option: CacheModuleOptions = {
-      ttl: 1000,
+      ttl: 1000 * 60 * 60, // ms
       isGlobal: true,
     };
     if (configService.get('NODE_ENV') === 'development') {

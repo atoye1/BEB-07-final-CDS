@@ -3,7 +3,7 @@ import { UpdateMyInfoCommand } from './updateMyInfo.command';
 import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Users } from 'users/entities/users.entity';
+import { Users } from 'entities/users.entity';
 
 @Injectable()
 @CommandHandler(UpdateMyInfoCommand)
