@@ -21,7 +21,7 @@ function ProposedCardScroll(props) {
 
   //처음 6개의 Card만 보여주도록 합니다
   const [index, setIndex] = useState(7);
-  const initialProposed = proposed.slice(0, index);
+  const initialProposed = proposed?.slice(0, index);
 
   return (
     <>
@@ -45,7 +45,7 @@ function ProposedCardScroll(props) {
         className="mySwiper"
       >
         <div>
-          {initialProposed.map((swap) => {
+          {initialProposed?.map((swap) => {
             return (
               <SwiperSlide key={swap.swapId}>
                 <ProposedCard

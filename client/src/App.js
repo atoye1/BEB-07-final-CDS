@@ -5,10 +5,7 @@ import { useDispatch } from 'react-redux';
 
 // apis
 import { requestVerify } from './apis/auth';
-import { 
-  getCoinGeckoAPI, 
-  getChainLinkAPI,
-} from './apis/request';
+import { getCoinGeckoAPI, getChainLinkAPI } from './apis/request';
 
 // actions
 import { setAuth } from './features/authSlice';
@@ -46,26 +43,26 @@ function App() {
   const dispatch = useDispatch();
   const metamask = useMetamask();
 
-  const getPrices = async()=>{
+  const getPrices = async () => {
     const priceByGecko = await getCoinGeckoAPI();
-    dispatch( setPriceByGecko(priceByGecko) );
-    
-    const priceByLink = await getChainLinkAPI();
-    dispatch( setPriceByLink(priceByLink) );
-  }
-  
-  // get Market Prices with Interval 20 seconds
-  useEffect(()=>{
-    getPrices()
+    dispatch(setPriceByGecko(priceByGecko));
 
-    let intervalId = setInterval(()=>{
+    const priceByLink = await getChainLinkAPI();
+    dispatch(setPriceByLink(priceByLink));
+  };
+
+  // get Market Prices with Interval 20 seconds
+  useEffect(() => {
+    getPrices();
+
+    let intervalId = setInterval(() => {
       getPrices();
     }, 20 * 1000);
 
-    return ()=>{
-      clearInterval( intervalId );
-    }
-  }, [])
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   // Refresh Login
   useEffect(() => {
@@ -79,8 +76,8 @@ function App() {
         }
 
         const address = await metamask
-        .request({ method: 'eth_requestAccounts' })
-        .then((result) => result[0]);
+          .request({ method: 'eth_requestAccounts' })
+          .then((result) => result[0]);
 
         dispatch(setAuth(address));
       })();
@@ -91,18 +88,18 @@ function App() {
     <div className="App">
       <ScrollToTop />
       <Header />
-      {!metamask ? <InstallNotice/> : <></>}
+      {!metamask ? <InstallNotice /> : <></>}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/create" element={<Create />} />
         <Route path="/accept/:swapId" element={<Accept />} />
         <Route path="/detail/:swapId" element={<Detail />} />
         <Route path="/mypage" element={<Mypage />} />
-        <Route path='/user/:address' element={<User/>} />
+        <Route path="/user/:address" element={<User />} />
         <Route path="/oracleTest" element={<OracleTest />} />
-        <Route path="/cardProposed" element={<CardDisplayProposed />} />
-        <Route path="/cardAccepted" element={<CardDisplayAccepted />} />
-        <Route path="/cds" element={<UnderstandingCDS />} />
+        {/* <Route path="/cardProposed" element={<CardDisplayProposed />} /> */}
+        {/* <Route path="/cardAccepted" element={<CardDisplayAccepted />} /> */}
+        {/* <Route path="/cds" element={<UnderstandingCDS />} /> */}
         <Route path="/risks" element={<Risks />} />
         <Route path="/teams" element={<Teams />} />
         <Route path="*" element={<PageNotFound />} />
