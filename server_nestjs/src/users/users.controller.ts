@@ -9,17 +9,18 @@ import {
   LoggerService,
 } from '@nestjs/common';
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
-
 import { UpdateUserDto } from './dto/update-user.dto';
 import { getAddressDto } from './dto/get-address.dto';
 import { GetAllUserQuery } from './query/getAllUser.query';
 import { UpdateMyInfoCommand } from './command/updateMyInfo.command';
+import { MyCacheService } from 'cache/cache.service';
 
 @Controller('users')
 export class UsersController {
   constructor(
     private commandBus: CommandBus,
     private queryBus: QueryBus,
+    private myCacheService: MyCacheService,
     @Inject(Logger) private readonly logger: LoggerService,
   ) {}
 
@@ -40,6 +41,7 @@ export class UsersController {
 
   @Get('/my')
   async getMyInfo() {
+    // this.cacheManager.set('time', 'get from users/my');
     return `${this.getMyInfo.name} not implemented`;
   }
 

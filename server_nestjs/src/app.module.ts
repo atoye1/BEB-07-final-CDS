@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { CacheModule } from '@nestjs/cache-manager';
 import { ConfigModule } from '@nestjs/config';
 
 import { AppController } from './app.controller';
@@ -13,7 +12,7 @@ import { BlockchainListenerModule } from './blockchain-listener/blockchain-liste
 import { TypeOrmConfig } from 'config/typeorm.config';
 import { validationSchema } from 'config/validationSchema';
 import { AuthModule } from './auth/auth.module';
-import { cacheConfig } from 'config/cache.config';
+import { MyCacheModule } from 'cache/cache.module';
 
 @Module({
   imports: [
@@ -31,9 +30,10 @@ import { cacheConfig } from 'config/cache.config';
     }),
     TypeOrmModule.forRootAsync(TypeOrmConfig),
     AuthModule,
-    CacheModule.registerAsync(cacheConfig),
+    MyCacheModule,
   ],
   controllers: [AppController],
   providers: [AppService],
+  // exports: [CacheModule],
 })
 export class AppModule {}
