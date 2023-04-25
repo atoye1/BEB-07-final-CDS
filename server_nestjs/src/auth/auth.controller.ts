@@ -7,7 +7,6 @@ import {
   Req,
   Res,
   UseGuards,
-  UnauthorizedException,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginDto } from './dto/login.dto';

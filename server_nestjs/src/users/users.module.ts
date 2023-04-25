@@ -1,15 +1,35 @@
 import { Logger, Module } from '@nestjs/common';
-import { UsersController } from './users.controller';
 import { CqrsModule } from '@nestjs/cqrs';
-import { GetAllUserHandler } from './query/getAllUser.handler';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Users } from '../entities/users.entity';
-import { UpdateMyInfoHandler } from './command/updateMyInfo.handler';
+
+import { Users, Swaps, Transactions } from 'entities';
 import { MyCacheModule } from 'cache/cache.module';
+import { Web3AuthGuard } from 'auth/web3-auth.guard';
+import { UsersController } from './users.controller';
+
+import { UpdateMyInfoHandler } from './commands/updateMyInfo.handler';
+import {
+  GetAllUserHandler,
+  GetUserInfoHandler,
+  GetUserSwapsHandler,
+  GetUserTransactionsHandler,
+} from './queries';
 
 @Module({
-  imports: [CqrsModule, TypeOrmModule.forFeature([Users]), MyCacheModule],
+  imports: [
+    CqrsModule,
+    TypeOrmModule.forFeature([Users, Swaps, Transactions]),
+    MyCacheModule,
+  ],
   controllers: [UsersController],
-  providers: [Logger, GetAllUserHandler, UpdateMyInfoHandler],
+  providers: [
+    Logger,
+    GetAllUserHandler,
+    GetUserInfoHandler,
+    GetUserSwapsHandler,
+    GetUserTransactionsHandler,
+    UpdateMyInfoHandler,
+    Web3AuthGuard,
+  ],
 })
 export class UsersModule {}
