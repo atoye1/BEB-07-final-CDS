@@ -9,10 +9,11 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { SwapsModule } from './swaps/swaps.module';
 import { EmailModule } from './email/email.module';
 import { BlockchainListenerModule } from './blockchain-listener/blockchain-listener.module';
-import { TypeOrmConfig } from 'config/typeorm.config';
-import { validationSchema } from 'config/validationSchema';
+import { TypeOrmConfig } from './config/typeorm.config';
+import { validationSchema } from './config/validationSchema';
 import { AuthModule } from './auth/auth.module';
-import { MyCacheModule } from 'cache/cache.module';
+import { MyCacheModule } from './cache/cache.module';
+import { BatchModule } from './batch/batch.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { MyCacheModule } from 'cache/cache.module';
     TypeOrmModule.forRootAsync(TypeOrmConfig),
     AuthModule,
     MyCacheModule,
+    BatchModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -6,8 +6,8 @@ import * as uuid from 'uuid';
 import { recoverPersonalSignature } from 'eth-sig-util';
 import { bufferToHex } from 'ethereumjs-util';
 
-import { Users } from 'entities/users.entity';
-import { MyCacheService } from 'cache/cache.service';
+import { Users } from '../entities';
+import { MyCacheService } from '../cache/cache.service';
 
 @Injectable()
 export class AuthService {

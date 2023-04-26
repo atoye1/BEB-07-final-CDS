@@ -1,5 +1,5 @@
 import { Repository } from 'typeorm';
-import { Users, Swaps, Transactions } from 'entities';
+import { Users, Swaps, Transactions } from '../../entities';
 import { InjectRepository } from '@nestjs/typeorm';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetUserTransactionsQuery } from './getUserTransactions.query';

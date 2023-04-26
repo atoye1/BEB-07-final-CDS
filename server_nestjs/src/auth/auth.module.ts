@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
-import { MyCacheModule } from 'cache/cache.module';
+import { MyCacheModule } from '../cache/cache.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Users } from 'entities/users.entity';
+import { Users } from '../entities';
 import { Web3AuthGuard } from './web3-auth.guard';
 
 @Module({

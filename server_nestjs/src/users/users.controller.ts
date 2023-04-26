@@ -13,7 +13,7 @@ import {
 import { CommandBus, QueryBus } from '@nestjs/cqrs';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { getAddressDto } from './dto/get-address.dto';
-import { Web3AuthGuard } from 'auth/web3-auth.guard';
+import { Web3AuthGuard } from '../auth/web3-auth.guard';
 import { Request } from 'express';
 import { UpdateMyInfoCommand } from './commands/updateMyInfo.command';
 

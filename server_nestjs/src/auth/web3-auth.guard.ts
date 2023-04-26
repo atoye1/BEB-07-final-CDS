@@ -6,7 +6,7 @@ import {
 } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Request } from 'express';
-import { MyCacheService } from 'cache/cache.service';
+import { MyCacheService } from '../cache/cache.service';
 
 @Injectable()
 export class Web3AuthGuard implements CanActivate {

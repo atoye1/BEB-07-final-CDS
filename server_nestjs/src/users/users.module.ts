@@ -2,9 +2,9 @@ import { Logger, Module } from '@nestjs/common';
 import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { Users, Swaps, Transactions } from 'entities';
-import { MyCacheModule } from 'cache/cache.module';
-import { Web3AuthGuard } from 'auth/web3-auth.guard';
+import { Users, Swaps, Transactions } from '../entities';
+import { MyCacheModule } from '../cache/cache.module';
+import { Web3AuthGuard } from '../auth/web3-auth.guard';
 import { UsersController } from './users.controller';
 
 import { UpdateMyInfoHandler } from './commands/updateMyInfo.handler';
