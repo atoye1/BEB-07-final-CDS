@@ -23,6 +23,7 @@ import {
   GetUserSwapsQuery,
   GetUserTransactionsQuery,
 } from './queries';
+import { VerifiedAddress } from './verified-address.decorator';
 
 @Controller('users')
 export class UsersController {
@@ -52,17 +53,13 @@ export class UsersController {
 
   @UseGuards(Web3AuthGuard)
   @Get('/my')
-  async getMyInfo(@Req() req: Request & { user: { verifiedAddress: string } }) {
-    const { verifiedAddress } = req.user;
+  async getMyInfo(@VerifiedAddress() verifiedAddress: string) {
     return await this.queryBus.execute(new GetUserInfoQuery(verifiedAddress));
   }
 
   @UseGuards(Web3AuthGuard)
   @Get('my/transactions')
-  async getMyTransactions(
-    @Req() req: Request & { user: { verifiedAddress: string } },
-  ) {
-    const { verifiedAddress } = req.user;
+  async getMyTransactions(@VerifiedAddress() verifiedAddress: string) {
     return await this.queryBus.execute(
       new GetUserTransactionsQuery(verifiedAddress),
     );
@@ -70,10 +67,7 @@ export class UsersController {
 
   @UseGuards(Web3AuthGuard)
   @Get('/my/swaps')
-  async getMySwaps(
-    @Req() req: Request & { user: { verifiedAddress: string } },
-  ) {
-    const { verifiedAddress } = req.user;
+  async getMySwaps(@VerifiedAddress() verifiedAddress: string) {
     return await this.queryBus.execute(new GetUserSwapsQuery(verifiedAddress));
   }
 

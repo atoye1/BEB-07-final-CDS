@@ -13,7 +13,8 @@ export const TypeOrmConfig: TypeOrmModuleAsyncOptions = {
       password: configService.get('DATABASE_PASSWORD'),
       database: configService.get('DATABASE_DB'),
       synchronize: configService.get('DATABASE_SYNCHRONIZE') === 'true',
-      entities: ['dist/**/*.entity{.ts,.js}'],
+      autoLoadEntities: true,
+      // entities: [__dirname + '/**/*.entity{.ts,.js}'],
     };
 
     return option;

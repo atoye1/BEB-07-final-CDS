@@ -28,7 +28,7 @@ export class GetUserTransactionsHandler
     const transactions = await txQuery.getManyAndCount();
     const result = {
       address,
-      totalTransactionCount: transactions[1],
+      totaltransactionCount: transactions[1],
       transactions: transactions[0],
     };
     return result;

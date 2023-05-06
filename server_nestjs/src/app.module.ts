@@ -14,6 +14,7 @@ import { validationSchema } from './config/validationSchema';
 import { AuthModule } from './auth/auth.module';
 import { MyCacheModule } from './cache/cache.module';
 import { BatchModule } from './batch/batch.module';
+import { HttpModule } from '@nestjs/axios';
 
 @Module({
   imports: [
@@ -33,9 +34,9 @@ import { BatchModule } from './batch/batch.module';
     AuthModule,
     MyCacheModule,
     BatchModule,
+    HttpModule,
   ],
   controllers: [AppController],
   providers: [AppService],
-  // exports: [CacheModule],
 })
 export class AppModule {}
